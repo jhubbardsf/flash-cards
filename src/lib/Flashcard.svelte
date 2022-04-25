@@ -2,8 +2,7 @@
 	export let num = 1;
 	export let q = 'What is the speed limit?';
 	export let a = ['25 in neighborhoods.', '60 on highway'];
-
-	let displayAnswer = false;
+	export let displayAnswer = false;
 
 	const showAnswer = () => {
 		console.log('Show answer!');

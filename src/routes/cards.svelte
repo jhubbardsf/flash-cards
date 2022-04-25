@@ -32,7 +32,7 @@
 		qA = questionAnswers[0];
 	}
 
-	if (!browser) shuffleArray(questionAnswers);
+	shuffleArray(questionAnswers);
 	console.log('Flash Game!');
 	console.log({ questionAnswers });
 	$: qA = questionAnswers[currentCard];
@@ -42,6 +42,7 @@
 		if (currentCard < questionAnswers.length - 1) {
 			console.log('next');
 			currentCard++;
+			questionAnswers = questionAnswers;
 		}
 	};
 
@@ -49,6 +50,7 @@
 		if (currentCard > 0) {
 			console.log('previous');
 			currentCard--;
+			questionAnswers = questionAnswers;
 		}
 	};
 </script>
@@ -58,7 +60,7 @@
 		<span>{currentCard + 1} of {questionAnswers.length}</span>
 	</div>
 	{#key questionAnswers}
-		<Flashcard q={qA.question} a={qA.answers} num={currentCard + 1} />
+		<Flashcard q={qA.question} a={qA.answers} num={currentCard + 1} displayAnswer={false} />
 	{/key}
 	<div class="w-[90%] md:w-[500px] flex justify-between pt-6 px-6 m-auto">
 		<div
