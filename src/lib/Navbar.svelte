@@ -10,7 +10,7 @@
 			href: '/'
 		},
 		{
-			name: 'Entire List',
+			name: 'Question List',
 			href: '/list'
 		},
 		{
