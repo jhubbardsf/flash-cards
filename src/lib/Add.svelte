@@ -17,6 +17,9 @@
 	};
 
 	const handlebtnM2 = () => {
+		console.log('handlebtnM2!');
+		initialValues = { question: '', answers: [''] };
+		$form = initialValues;
 		modal.closeModal();
 	};
 
@@ -26,6 +29,7 @@
 			console.log('Add!: ', values);
 			addQA(values);
 			initialValues = { question: '', answers: [''] };
+			$form = initialValues;
 			modal.closeModal();
 		}
 	});
