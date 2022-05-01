@@ -22,8 +22,8 @@
 
 	const q = query(
 		collection(db, 'nc-dmv'),
-		orderBy('custom', 'desc')
-		// orderBy('createdAt', 'desc')
+		orderBy('custom', 'desc'),
+		orderBy('createdAt', 'desc')
 	);
 	onSnapshot(q, (querySnapshot) => {
 		questionAnswers = [];
@@ -31,6 +31,8 @@
 			const q = { ...doc.data(), id: doc.id };
 			questionAnswers.push(q as questionAnswer);
 		});
+
+		console.log('QA Length: ', questionAnswers.length);
 	});
 
 	const deleteQA = (id: string | undefined) => {
@@ -43,7 +45,12 @@
 	};
 </script>
 
-<div class="w-full mb-8 flex justify-end">
+<div class="w-full mb-8 flex justify-between">
+	<div class="">
+		Total Question: {questionAnswers.length} / Custom Questions: {questionAnswers.filter(
+			(qa) => qa.custom
+		).length}
+	</div>
 	<div class="w-56">
 		<Add />
 	</div>

@@ -43,8 +43,8 @@ export const getQA = async (): Promise<cardDeck> => {
     // const q = query(collection(db, "nc-dmv"), where("custom", "==", true));
     const q = query(
         collection(db, 'nc-dmv'),
-        orderBy('custom', 'desc')
-        // orderBy('createdAt', 'desc')
+        orderBy('custom', 'desc'),
+        orderBy('createdAt', 'desc')
     );
     const deck: cardDeck = [];
 
