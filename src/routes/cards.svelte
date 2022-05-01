@@ -78,7 +78,7 @@
 	</div>
 	<div class="flex justify-center py-10">
 		<div
-			class="border border-solid p-6 rounded cursor-pointer"
+			class="border border-solid p-4 rounded cursor-pointer"
 			on:click={() => {
 				showCustom = !showCustom;
 				currentCard = 0;
