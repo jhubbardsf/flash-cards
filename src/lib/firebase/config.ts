@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { collection, addDoc, query, getDocs, Timestamp, orderBy, deleteDoc, doc } from "firebase/firestore";
+import { collection, addDoc, query, getDocs, Timestamp, orderBy, deleteDoc, doc, Firestore, enableIndexedDbPersistence } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 
 // import { getAnalytics } from "firebase/analytics";
@@ -24,7 +24,28 @@ export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // const analytics = getAnalytics(app);
+const enableOffline = async (firestoreDB: Firestore) => {
+    console.log("Enabling offline persistence");
+    try {
+        await enableIndexedDbPersistence(firestoreDB);
+    } catch (err: any) {
+        if (err.code == 'failed-precondition') {
+            console.error('failed-precondition', err);
+            // Multiple tabs open, persistence can only be enabled
+            // in one tab at a a time.
+            // ...
+        } else if (err.code == 'unimplemented') {
+            console.error('unimplemented', err);
+            // The current browser does not support all of the
+            // features required to enable persistence
+            // ...
+        } else {
+            console.error('unkown', err);
+        }
+    }
+};
 
+enableOffline(db);
 
 // Add a new document with a generated id.
 export const addQA = async (qa: questionAnswer) => {
