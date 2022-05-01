@@ -24,4 +24,5 @@
 	];
 </script>
 
+<img src="/card-icon.svg" height={400} />
 <Navbar {menus} {siteName} {alt} {logo} {textsize} />
